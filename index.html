@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Parfitarole</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; overflow: hidden; }
+
+        .radial-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300vmax;
+            height: 300vmax;
+            margin-top: -150vmax;
+            margin-left: -150vmax;
+            transform-origin: center center;
+            animation: spin 30s linear infinite reverse;
+            background: repeating-conic-gradient(
+                    #fef200 0deg 15deg,
+                    #038b3f 15deg 30deg
+            );
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content img {
+            max-width: 20%;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .no-select { user-select: none; }
+
+        @media (max-width: 1024px) {
+            .content img {
+                max-width: 75%;
+            }
+        }
+
+        * {
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -ms-user-select: none !important;
+            caret-color: transparent !important;
+        }
+
+        *:focus {
+            outline: none !important;
+        }
+
+        body {
+            tabindex: -1;
+        }
+
+    </style>
+</head>
+<body>
+<div class="radial-bg"></div>
+<div class="content">
+    <img id="logo" class="no-select" src="parfitarole.webp" alt="Parfitarole" tabindex="-1">
+</div>
+
+<script>
+    document.getElementById('logo').ondragstart = function() { return false; };
+</script>
+</body>
+</html>
